@@ -1,0 +1,16 @@
+// file ini digunakan untuk transisi saat muncul atau keluarnya suatu gallery
+
+// fade-enter-active, fade-leave-active, fade-enter, fade-leave adalah kode dari dokumentasi  vue js
+.slide-fade-enter-active {
+  transition: all 0.2s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter,
+.slide-fade-leave {
+  transform: translateY(10px); // transform saat thumbnail-image di pilih
+  opacity: 0.5;
+}

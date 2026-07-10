@@ -1,0 +1,52 @@
+.component-products {
+  margin-bottom: 20px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .products-thumbnail {
+    width: 100%;
+    height: 150px;
+    // gambar full 100% tp heightnya 150px
+
+    border-radius: 8px;
+
+    overflow: hidden; // agar supaya saat kursor di gambar dan melakukan transisi, maka gambarnya tidak akan keluar
+    position: relative;
+    z-index: 1; // ditambahkannya z-index: 1; agar border-radiusnya tidak hilang saat melakukan transisi
+
+    &:hover,
+    &:focus {
+      .products-image {
+        transform: scale(1.1);
+      }
+    }
+    // bukan untuk mengatur gambarnya agar muncul ata sebagainya, tetapi mengatur container untuk gambarnya
+
+    .products-image {
+      width: 100%;
+      height: 100%; // karena positionnya relative, height 100% relative dari product thumbnail yg mana heightnya 150px
+
+      background-color: #ddd;
+      background-position: center; // agar gambar ada ditengah
+      background-size: cover; // agar gambar memenuhin semua
+      background-repeat: no-repeat; // agar gambar tidak terulang-ulang
+
+      transition: all 0.3s ease; // untuk memberikan animasi transisi saat kursor berada pada gambar
+    }
+  }
+
+  .products-text {
+    font-weight: normal;
+    font-size: 18px;
+    color: #0c0d36;
+    margin-top: 12px;
+  }
+
+  .products-price {
+    font-weight: 500;
+    font-size: 16px;
+    color: #ff7158;
+  }
+}

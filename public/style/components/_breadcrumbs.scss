@@ -1,0 +1,24 @@
+.store-breadcrumbs {
+  .breadcrumb {
+    background: transparent; // untuk menghilangkan background breadcrumb
+    padding: 0; // menghilangkan seluruh padding (jarak kana, kiri, atas, bawah)
+    padding-top: 10px; // memberikan padding hanya pada top
+    padding-bottom: 10px;
+  }
+
+  // menimpa
+  .breadcrumb-item + .breadcrumb-item::before {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  // styling untuk breadcrumb item yg aktif
+  .breadcrumb-item.active {
+    font-weight: 300;
+    color: #0c0d36;
+  }
+
+  a {
+    color: #979797;
+  }
+}

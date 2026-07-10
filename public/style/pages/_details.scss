@@ -1,0 +1,95 @@
+.page-details {
+  h5 {
+    font-weight: normal;
+    font-size: 18px;
+    color: #0c0d36;
+  }
+
+  // styling breadcrumb
+  .bc {
+    font-size: 12px;
+  }
+
+  // styling gallery
+  .store-gallery {
+    margin-top: 20px;
+
+    img {
+      border-radius: 10px;
+      // untuk memberikan lengkungan di tiap-tiap sudut yang ada pada gambar
+    }
+
+    .thumbnail-image {
+      margin-bottom: 20px;
+      border: 2px solid transparent;
+      /* style "border" untuk di thumbnail image yang tidak aktif (karena kita akan menambahkan border pada thumbnail image yg active, maka 
+        untuk thumbnail image yg tidak active harus ditambahkan style border transparant agar tampilan tidak aneh */
+
+      // berikut style untuk thumbnail image yang sedang dihover oleh kursor ataupun sedang active:
+      &:hover,
+      &.active {
+        border: 2px solid #ff7158;
+      }
+    }
+  }
+
+  // styling judul
+  .store-heading {
+    margin-bottom: 10px;
+
+    h1 {
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 36px;
+      color: #0c0d36;
+      margin-bottom: 0px;
+    }
+
+    .owner {
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 21px;
+      color: #979797;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: #ff7158;
+      margin-bottom: 10px;
+    }
+  }
+
+  // styling deskripsi
+  .store-description {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 29px;
+    color: #525252;
+  }
+
+  // styling customer review
+  .store-review {
+    .media {
+      img {
+        max-width: 50px;
+      }
+    }
+
+    .media-body {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 29px;
+      color: #525252;
+      margin-bottom: 20px;
+
+      h5 {
+        font-weight: 500;
+        font-size: 16px;
+        color: #0c0d36;
+      }
+    }
+  }
+}
