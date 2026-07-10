@@ -1,0 +1,11 @@
+- gunakan npm install dan npm run dev
+- untuk fitur datatables, lakukukan composer require yajra/laravel-datatables:"^10" (memakai versi datatables 10 karena proyek ini menggunakan Laravel 10)
+- include styling dan script datatables, download di web datatables.net dan pilih bootstrap 4 sesuai dengan framework yang di pakai oleh projek ini (lihat episode terakhir pada chapter "membuat admin area" di video bwa)
+
+- membuat sebuah form request untuk category (CRUD Kategori ep 3) // berguna untuk membuat sebuah validasi yang dimana bisa dipanggil dari controller
+
+- tidak perlu menghapus file photo karena saya memakai softDeletes() pada table categories yang dimana ketika di delete, data masih tersimpan di dalam database agar memudahkan saat proses backup jika diperlukan
+
+- menginstall doctrine untuk modifying columns di table user
+
+- jika ingin menampilkan data yang terhapus (data yang dihapus menggunakan softDeletes) cukup memakai fungsi withTrashed(). Contoh penggunaan: $query = Product::with(['user', 'category'])->withTrashed(); atau bisa juga digunakan pada sebuah relasi tertentu di suatu model.
