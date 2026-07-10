@@ -9955,13 +9955,31 @@ footer p {
 .component-categories {
   background: #f4f4f4;
   border-radius: 8px;
-  padding: 30px 30px 10px 30px;
+  padding: 30px 20px 15px 20px;
   margin-bottom: 20px;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 180px;
 }
 .component-categories:hover {
   transform: scale(1.05);
   text-decoration: none;
+}
+.component-categories .categories-image {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.component-categories .categories-image img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
 }
 .component-categories .categories-text {
   font-size: 18px;
@@ -9969,6 +9987,8 @@ footer p {
   color: #0c0d36;
   font-weight: normal;
   margin-top: 12px;
+  margin-bottom: 0;
+  word-break: break-word;
 }
 
 .component-products {
