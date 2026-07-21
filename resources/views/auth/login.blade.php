@@ -36,6 +36,7 @@
                     </span>
                   @enderror
                 </div>
+
                 <div class="form-group">
                   <label for="password">Password</label>
                   <input id="password" type="password" name="password" required autocomplete="current-password" class="form-control w-75 @error('password') is-invalid @enderror" />
@@ -45,7 +46,10 @@
                     </span>
                   @enderror
                 </div>
-                <button type="submit" class="btn btn-success btn-block w-75 mt-4">Sign In to My Account</button>
+                
+                <button type="submit" class="btn btn-success btn-block w-75 mt-4">
+                  Sign In to My Account
+                </button>
                 <a href="{{ route('register') }}" class="btn btn-signup btn-block w-75 mt-2">Sign Up</a>
               </form>
             </div>
