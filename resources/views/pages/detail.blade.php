@@ -15,7 +15,7 @@
               <nav>
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
-                    <a href="/index.html" class="">Home</a>
+                    <a href="{{ route('home') }}" class="">Home</a>
                   </li>
                   <li class="breadcrumb-item active">
                     Product Details
@@ -29,14 +29,14 @@
       </section>
 
       <!-- gallery product (vue js) -->
-      <section class="store-gallery" id="gallery">
+      <section class="store-gallery mb-3" id="gallery">
         <div class="container">
           <div class="row">
             <!-- main image -->
             <div class="col-lg-8" data-aos="zoom-in">
               <transition name="slide-fade" mode="out-in">
                 <!-- untuk membery transisi setiap gambar dipilih, dan transition ini termasuk part dalam vue js -->
-                <img v-bind:src="photos[activePhoto].url" v-bind:key="photos[activePhoto].id" class="w-100 main-image" />
+                <img v-if="photos.length" v-bind:src="photos[activePhoto].url" v-bind:key="photos[activePhoto].id" class="w-100 main-image" />
                 <!-- kegunaan v-bind: adalah untuk mengambil variabel yang sudah dibuat di vuenya, dan ini termasuk salah satu fungsi dari vue js -->
                 <!-- fungsi dari photos[activePhoto].url adalah mengambil data dari field url dari objek/variabel "photos" yg dimana indeksnya adalah array ke 2 (1) -->
               </transition>
@@ -68,13 +68,22 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-8">
-                <h1>Sofa Teracumalaka</h1>
-                <div class="owner">By Daemon Targaryen</div>
-                <div class="price">$1,500</div>
+                <h1>{{ $product->name }}</h1>
+                <div class="owner">By {{ $product->user->store_name }}</div>
+                <div class="price">Rp. {{ number_format($product->price) }}</div>
               </div>
               <!-- tombol -->
               <div class="col-lg-2" data-aos="zoom-in">
-                <a href="cart.html" class="btn btn-success px-4 text-white btn-block mb-3">Add To Cart </a>
+                @auth
+                    <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <!-- jika user sudah login maka akan muncul tombol add to cart -->
+                      <button class="btn btn-success px-4 text-white btn-block mb-3" type="submit">Add To Cart </button>
+                    </form>
+                @else
+                    <!-- jika user belum login maka akan muncul tombol sign up atau sign in -->
+                    <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">Sign In to Add </a>
+                @endauth
               </div>
             </div>
           </div>
@@ -85,18 +94,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 col-lg-8">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut porro blanditiis qui, magni sed expedita voluptatem sunt, similique at reiciendis, possimus perferendis nesciunt eveniet animi. Labore deserunt fugiat numquam
-                  eaque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem, quam. Dolorum aspernatur dolorem pariatur natus voluptate alias nobis, porro delectus. Provident praesentium vitae dolore veniam nam aut magnam totam
-                  aliquam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quis totam tempora sed architecto, quia consectetur voluptatibus ducimus nihil enim officia debitis maxime dolorem placeat laudantium amet nesciunt
-                  obcaecati! Dicta.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga quia vel minus laboriosam delectus illum nisi at, dolorum ullam reprehenderit, exercitationem eum cumque voluptates voluptate ea quasi iusto ex dignissimos?
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus assumenda dignissimos deserunt natus! Nostrum fugiat saepe veritatis obcaecati deleniti, inventore, reprehenderit suscipit rem tempora, labore sunt id neque
-                  aliquam voluptatem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam maxime vel explicabo necessitatibus fuga, deleniti tempore consectetur eius sed? Odio, maiores dolore ex ipsa iusto architecto magni
-                  obcaecati necessitatibus vel.
-                </p>
+                {!! $product->description !!}
               </div>
             </div>
           </div>
@@ -160,22 +158,12 @@
         data: {
           activePhoto: 0, // sebuah variabel biasa
           photos: [
-            {
-              id: 1,
-              url: '/images/product-details-1.jpg',
-            },
-            {
-              id: 2,
-              url: '/images/product-details-2.jpg',
-            },
-            {
-              id: 3,
-              url: '/images/product-details-3.jpg',
-            },
-            {
-              id: 4,
-              url: '/images/product-details-4.jpg',
-            },
+            @foreach ($product->galleries as $gallery)
+              {
+                id: {{ $gallery->id }},
+                url: "{{ Storage::url($gallery->photos) }}",
+              },
+            @endforeach
           ],
         },
 
